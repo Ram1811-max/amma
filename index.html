@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Legacy of Love</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #f3e5f5 0%, #e8eaf6 100%);
+            color: #4a148c;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            margin-top: 50px;
+            text-align: center;
+            animation: fadeIn 2s ease-in;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .photo-card {
+            background: white;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: 0.3s;
+        }
+
+        .photo-card:nth-child(even) { transform: rotate(3deg); }
+
+        .photo-card img {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 2px;
+            image-rendering: -webkit-optimize-contrast;
+        }
+
+        .message-section {
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: none; /* Hidden until button click */
+        }
+
+        #revealBtn {
+            padding: 15px 40px;
+            background-color: #7b1fa2;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(123, 31, 162, 0.3);
+            margin-bottom: 50px;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .petal {
+            position: fixed;
+            top: -10%;
+            z-index: 1000;
+            user-select: none;
+            pointer-events: none;
+            animation: fall 5s linear forwards;
+        }
+
+        @keyframes fall {
+            to { transform: translateY(110vh) translateX(50px) rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>A Lifetime of Beautiful Memories</h1>
+        <p>For the strongest woman we know.</p>
+    </header>
+
+    <div class="gallery">
+        <div class="photo-card">
+            <img src="https://lh3.googleusercontent.com/u/0/d/1p6d4krX4QdTgtxqr7KNEcL5XEpI20D8q" alt="Mom and Dad">
+        </div>
+        <div class="photo-card">
+            <img src="https://lh3.googleusercontent.com/u/0/d/12Ah3ugi9rkkdGrnkY30HYWMs6ko2pX6f" alt="Happy Memory">
+        </div>
+    </div>
+
+    <button id="revealBtn" onclick="revealMessage()">A Message For You, Mom ✉️</button>
+
+    <div id="message-section" class="message-section">
+        <h2>Dearest Mom,</h2>
+        <p>Your love, and the love you shared with Dad, is the foundation of our family. 
+           We wanted to create this small space to remind you that his spirit and your 
+           strength are always with us.</p>
+        <p>We love you more than words can say.</p>
+        <h3 style="text-align: right;">— With Love, Ram </h3>
+    </div>
+
+    <script>
+        function revealMessage() {
+            document.getElementById('revealBtn').style.display = 'none';
+            const msg = document.getElementById('message-section');
+            msg.style.display = 'block';
+            msg.style.animation = 'fadeIn 2s forwards';
+
+            // Start falling petals (Softer than hearts for this context)
+            for(let i = 0; i < 50; i++) {
+                setTimeout(createPetal, i * 100);
+            }
+        }
+
+        function createPetal() {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            const types = ['🌸', '✨', '🤍', '🍃'];
+            petal.innerText = types[Math.floor(Math.random() * types.length)];
+            petal.style.left = Math.random() * 100 + "vw";
+            petal.style.fontSize = Math.random() * 20 + 15 + "px";
+            petal.style.animationDuration = Math.random() * 3 + 4 + "s";
+            document.body.appendChild(petal);
+            setTimeout(() => { petal.remove(); }, 6000);
+        }
+    </script>
+</body>
+</html>
